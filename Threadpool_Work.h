@@ -9,7 +9,7 @@ class ThreadPool_Work
 
 public:
 	ThreadPool_Work();
-	ThreadPool_Work(WORK f);
+	explicit ThreadPool_Work(WORK f);
 	~ThreadPool_Work();
 private:
 	WORK w;
