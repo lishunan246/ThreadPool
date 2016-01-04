@@ -3,7 +3,7 @@
 
 void NTAPI WorkCallback(PTP_CALLBACK_INSTANCE , void* context, PTP_WORK w)
 {
-	 auto a=*static_cast< CALLER* >(context);
+	 auto &a=*static_cast< CALLER* >(context);
 	 a.w(a.context);
 }
 
@@ -16,7 +16,7 @@ Threadpool::~Threadpool()
 {
 }
 
-void Threadpool::waitForCallback() const
+void Threadpool::waitForCallbacks() const
 {
 	WaitForThreadpoolWorkCallbacks(tp_work, FALSE);
 }
@@ -31,7 +31,7 @@ void Threadpool::setContext(void* context)
 	caller.context = context;
 }
 
-void Threadpool::submit(const ThreadPool_Work &t)
+void Threadpool::submit(const Threadpool_Work &t)
 {
 	caller.w = t.w;
 	tp_work = CreateThreadpoolWork(WorkCallback, static_cast<void *>(&caller), nullptr);

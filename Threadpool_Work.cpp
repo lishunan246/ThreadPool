@@ -2,15 +2,20 @@
 
 
 
-ThreadPool_Work::ThreadPool_Work()
+Threadpool_Work::Threadpool_Work()
 {
 }
 
-ThreadPool_Work::ThreadPool_Work(WORK f)
+Threadpool_Work::Threadpool_Work(WORK f)
 {
 	w = f;
 }
 
-ThreadPool_Work::~ThreadPool_Work()
+Threadpool_Work::~Threadpool_Work()
 {
+}
+
+const WORK& Threadpool_Work::getInstance() const
+{
+	return w;
 }

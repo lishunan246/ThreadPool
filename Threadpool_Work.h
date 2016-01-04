@@ -3,14 +3,15 @@
 
 using WORK = std::function<void(void*)>;
 
-class ThreadPool_Work
+class Threadpool_Work
 {
 	friend class Threadpool;
 
 public:
-	ThreadPool_Work();
-	explicit ThreadPool_Work(WORK f);
-	~ThreadPool_Work();
+	Threadpool_Work();
+	explicit Threadpool_Work(WORK f);
+	~Threadpool_Work();
+	const WORK& getInstance() const;
 private:
 	WORK w;
 	

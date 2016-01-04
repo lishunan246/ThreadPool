@@ -13,13 +13,14 @@ class Threadpool
 
 public:
 	Threadpool();
-	~Threadpool();
-	void submit(const ThreadPool_Work &tp_work);
-	void waitForCallback() const;
-	void close() const;
+	virtual ~Threadpool();
+	void submit(const Threadpool_Work &tp_work);
+	virtual void waitForCallbacks() const;
+	virtual void close() const;
 	void setContext(void* context);
+protected:
+	CALLER caller;
 private:
 	PTP_WORK tp_work=nullptr;
-	CALLER caller;
 };
 
