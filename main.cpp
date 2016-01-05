@@ -1,5 +1,6 @@
 #include "Threadpool.h"
 #include "ThreadpoolWait.h"
+#include "ThreadpoolTimer.h"
 
 void print(void * context)
 {
@@ -10,8 +11,9 @@ void TestThreadpool()
 {
 	Threadpool tp;
 	Threadpool_Work tp_work(print);
-	
-	tp.submit(tp_work);
+	tp.create();
+	tp.setWork(tp_work);
+	tp.submit();
 
 	char c[] = " world";
 	tp.setContext(&c);
@@ -21,16 +23,17 @@ void TestThreadpool()
 
 void TestThreadpoolWait()
 {
-	HANDLE handle = NULL;
-	handle = CreateEvent(NULL, false, false, NULL);
+	HANDLE handle = nullptr;
+	handle = CreateEvent(nullptr, false, false, nullptr);
 	
 	ThreadpoolWait tp;
 	Threadpool_Work tp_work(print);
+	tp.setWork(tp_work);
 
 	char c[] = " world2";
 	tp.setContext(&c);
 	tp.create();
-	tp.set(tp_work,handle);
+	tp.set(handle);
 	SetEvent(handle);
 
 
@@ -41,10 +44,32 @@ void TestThreadpoolWait()
 	tp.close();
 }
 
+void TestThreadpoolTimer()
+{
+	ThreadpoolTimer timer;
+	Threadpool_Work tp_work(print);
+	timer.setWork(tp_work);
+	timer.create();
+	char c[] = " Timer";
+	timer.setContext(&c);
+
+
+	FILETIME FileTime;
+	ULARGE_INTEGER integer;
+	integer.QuadPart = (unsigned)-50000000;
+	FileTime.dwHighDateTime = integer.HighPart;
+	FileTime.dwLowDateTime = integer.LowPart;
+	timer.set(&FileTime, 100, 0);
+	Sleep(10000);
+	timer.close();
+}
+
 int main()
 {
 	TestThreadpool();
 	TestThreadpoolWait();
+
+	TestThreadpoolTimer();
 
 	return 0;
 }

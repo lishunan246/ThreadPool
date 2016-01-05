@@ -99,11 +99,13 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Threadpool.cpp" />
+    <ClCompile Include="ThreadpoolTimer.cpp" />
     <ClCompile Include="ThreadpoolWait.cpp" />
     <ClCompile Include="Threadpool_Work.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Threadpool.h" />
+    <ClInclude Include="ThreadpoolTimer.h" />
     <ClInclude Include="ThreadpoolWait.h" />
     <ClInclude Include="Threadpool_Work.h" />
   </ItemGroup>

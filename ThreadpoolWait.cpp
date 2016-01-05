@@ -27,13 +27,12 @@ bool ThreadpoolWait::create()
 	return tp_wait_ != nullptr;
 }
 
-void ThreadpoolWait::set(Threadpool_Work work, HANDLE handle, int timeout)
+void ThreadpoolWait::set(HANDLE handle, int timeout) const
 {
-	caller.w = work.getInstance();
 	SetThreadpoolWait(tp_wait_, handle, nullptr);
 }
 
-void ThreadpoolWait::waitForCallbacks() const
+void ThreadpoolWait::waitForCallbacks(bool fCancelPendingCallbacks) const
 {
-	WaitForThreadpoolWaitCallbacks(tp_wait_, false);
+	WaitForThreadpoolWaitCallbacks(tp_wait_, fCancelPendingCallbacks);
 }
