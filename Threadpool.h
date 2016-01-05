@@ -21,5 +21,6 @@ public:
 	virtual void setWork(const Threadpool_Work& work);
 protected:
 	CALLER caller;
+	PTP_CALLBACK_ENVIRON environ_=nullptr;
 };
 

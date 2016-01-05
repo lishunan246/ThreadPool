@@ -17,7 +17,7 @@ ThreadpoolWork::~ThreadpoolWork()
 
 bool ThreadpoolWork::create()
 {
-	work_=CreateThreadpoolWork(callback_, &caller, nullptr);
+	work_=CreateThreadpoolWork(callback_, &caller, environ_);
 	return work_ != nullptr;
 }
 

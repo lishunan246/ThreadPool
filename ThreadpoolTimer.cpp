@@ -17,7 +17,7 @@ ThreadpoolTimer::~ThreadpoolTimer()
 
 bool ThreadpoolTimer::create()
 {
-	timer_ = CreateThreadpoolTimer(timer_callback_, &caller, nullptr);
+	timer_ = CreateThreadpoolTimer(timer_callback_, &caller, environ_);
 	return timer_ != nullptr;
 }
 

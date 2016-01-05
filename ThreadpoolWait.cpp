@@ -23,7 +23,7 @@ void ThreadpoolWait::close() const
 
 bool ThreadpoolWait::create()
 {
-	tp_wait_ = CreateThreadpoolWait(wait_callback, static_cast<void *>(&caller), nullptr);
+	tp_wait_ = CreateThreadpoolWait(wait_callback, static_cast<void *>(&caller), environ_);
 	return tp_wait_ != nullptr;
 }
 
