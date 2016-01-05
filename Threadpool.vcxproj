@@ -101,12 +101,14 @@
     <ClCompile Include="Threadpool.cpp" />
     <ClCompile Include="ThreadpoolTimer.cpp" />
     <ClCompile Include="ThreadpoolWait.cpp" />
+    <ClCompile Include="ThreadpoolWork.cpp" />
     <ClCompile Include="Threadpool_Work.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Threadpool.h" />
     <ClInclude Include="ThreadpoolTimer.h" />
     <ClInclude Include="ThreadpoolWait.h" />
+    <ClInclude Include="ThreadpoolWork.h" />
     <ClInclude Include="Threadpool_Work.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -4,27 +4,22 @@
 
 struct CALLER
 {
-	WORK w=nullptr;
-	void * context=nullptr;
+	WORK w = nullptr;
+	void* context = nullptr;
 };
 
 class Threadpool
 {
-
 public:
 	Threadpool();
 	virtual ~Threadpool();
-	void submit() const;
-	virtual bool create();
-	virtual void waitForCallbacks(bool fCancelPendingCallbacks=false) const;
-	virtual void close() const;
+	virtual bool create() =0;
+	virtual void waitForCallbacks(bool fCancelPendingCallbacks = false) const = 0;
+	virtual void close() const = 0;
 	void setContext(void* context);
-	static void call(void * pcaller);
-	virtual void setWork(const Threadpool_Work &work);
+	static void call(void* pcaller);
+	virtual void setWork(const Threadpool_Work& work);
 protected:
 	CALLER caller;
-	
-private:
-	PTP_WORK tp_work=nullptr;
 };
 

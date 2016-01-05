@@ -1,7 +1,7 @@
 #include "Threadpool.h"
 #include "ThreadpoolWait.h"
 #include "ThreadpoolTimer.h"
-
+#include "ThreadpoolWork.h"
 void print(void * context)
 {
 	printf_s("Hello%s\n",static_cast<char*>(context));
@@ -9,7 +9,7 @@ void print(void * context)
 
 void TestThreadpool()
 {
-	Threadpool tp;
+	ThreadpoolWork tp;
 	Threadpool_Work tp_work(print);
 	tp.create();
 	tp.setWork(tp_work);
@@ -23,7 +23,7 @@ void TestThreadpool()
 
 void TestThreadpoolWait()
 {
-	HANDLE handle = nullptr;
+	HANDLE handle;
 	handle = CreateEvent(nullptr, false, false, nullptr);
 	
 	ThreadpoolWait tp;
