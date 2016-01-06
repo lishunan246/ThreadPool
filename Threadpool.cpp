@@ -3,7 +3,7 @@
 Threadpool::Threadpool()
 {
 	InitializeThreadpoolEnvironment(&CallBackEnviron);
-	pool = CreateThreadpool(NULL);
+	pool = CreateThreadpool(nullptr);
 	SetThreadpoolCallbackPool(&CallBackEnviron, pool);
 }
 
@@ -41,15 +41,15 @@ void Threadpool::setCallbackRunsLong()
 
 void Threadpool::setCallbackPriority(Priority priority)
 {
-	switch(priority)
+	switch (priority)
 	{
-	case High: 
+	case High:
 		SetThreadpoolCallbackPriority(&CallBackEnviron, TP_CALLBACK_PRIORITY_HIGH);
 		break;
-	case Low: 
+	case Low:
 		SetThreadpoolCallbackPriority(&CallBackEnviron, TP_CALLBACK_PRIORITY_LOW);
 		break;
-	case Normal: 
+	case Normal:
 		SetThreadpoolCallbackPriority(&CallBackEnviron, TP_CALLBACK_PRIORITY_NORMAL);
 		break;
 	}
@@ -60,7 +60,7 @@ void Threadpool::setThreadMaximum(unsigned long cthrdMost) const
 	SetThreadpoolThreadMaximum(pool, cthrdMost);
 }
 
-void Threadpool::setThreadMinimun(unsigned long cthrdMic) const
+bool Threadpool::setThreadMinimun(unsigned long cthrdMic) const
 {
-	SetThreadpoolThreadMinimum(pool,cthrdMic);
+	return TRUE == SetThreadpoolThreadMinimum(pool, cthrdMic);
 }
