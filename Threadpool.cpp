@@ -35,9 +35,9 @@ void Threadpool::call(void* pcaller)
 	a.w(a.context);
 }
 
-void Threadpool::setWork(const Threadpool_Work& work)
+void Threadpool::setCallback(const WORK& w)
 {
-	caller.w = work.w;
+	caller.w = w;
 }
 
 void Threadpool::setCallbackLibrary(void* mod)

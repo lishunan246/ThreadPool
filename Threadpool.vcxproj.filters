@@ -24,9 +24,6 @@
     <ClCompile Include="ThreadpoolWait.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Threadpool_Work.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ThreadpoolTimer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -42,9 +39,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ThreadpoolWait.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Threadpool_Work.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ThreadpoolTimer.h">

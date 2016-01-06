@@ -1,8 +1,10 @@
 #pragma once
-#include "Threadpool_Work.h"
+
 #include <Windows.h>
+#include <functional>
 
 using CleanupCallback = std::function<void(void*, void*)>;
+using WORK = std::function<void(void*)>;
 
 struct CALLER
 {
@@ -35,7 +37,7 @@ public:
 	virtual void close() const = 0;
 	void setContext(void* context);
 	static void call(void* pcaller);
-	void setWork(const Threadpool_Work& work);
+	void setCallback(const WORK &w);
 	void setCallbackLibrary(void* mod);
 	void setCallbackRunsLong();
 	void setCallbackPriority(Priority priority);

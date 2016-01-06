@@ -10,10 +10,9 @@ void print(void * context)
 void TestThreadpool()
 {
 	ThreadpoolWork tp;
-	Threadpool_Work tp_work(print);
 	tp.setThreadMaximum(2);
 	tp.create();
-	tp.setWork(tp_work);
+	tp.setCallback(print);
 	tp.submit();
 
 	char c[] = " world";
@@ -29,8 +28,7 @@ void TestThreadpoolWait()
 	
 	ThreadpoolWait tp;
 	tp.setCallbackPriority(Threadpool::High);
-	Threadpool_Work tp_work(print);
-	tp.setWork(tp_work);
+	tp.setCallback(print);
 
 	char c[] = " world2";
 	tp.setContext(&c);
@@ -49,8 +47,7 @@ void TestThreadpoolWait()
 void TestThreadpoolTimer()
 {
 	ThreadpoolTimer timer;
-	Threadpool_Work tp_work(print);
-	timer.setWork(tp_work);
+	timer.setCallback(print);
 	timer.create();
 	char c[] = " Timer";
 	timer.setContext(&c);
