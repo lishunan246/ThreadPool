@@ -7,6 +7,11 @@ add_library(threadpool STATIC
     ThreadpoolWork.cpp
     ThreadpoolWait.cpp
     ThreadpoolIo.cpp
+    Threadpool.h
+    ThreadpoolTimer.h
+    ThreadpoolWork.h
+    ThreadpoolWait.h
+    ThreadpoolIo.h
 )
 
 add_executable(
