@@ -24,9 +24,12 @@ public:
 	void setCallbackLibrary(void *mod);
 	void setCallbackRunsLong();
 	void setCallbackPriority(Priority priority);
+	void setThreadMaximum(unsigned long cthrdMost) const;
+	void setThreadMinimun(unsigned long cthrdMic) const;
 protected:
 	CALLER caller;
 	TP_CALLBACK_ENVIRON CallBackEnviron;
 	PTP_CALLBACK_ENVIRON environ_=&CallBackEnviron;
+	PTP_POOL pool;
 };
 

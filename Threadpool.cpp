@@ -3,11 +3,14 @@
 Threadpool::Threadpool()
 {
 	InitializeThreadpoolEnvironment(&CallBackEnviron);
+	pool = CreateThreadpool(NULL);
+	SetThreadpoolCallbackPool(&CallBackEnviron, pool);
 }
 
 Threadpool::~Threadpool()
 {
 	DestroyThreadpoolEnvironment(&CallBackEnviron);
+	CloseThreadpool(pool);
 }
 
 void Threadpool::setContext(void* context)
@@ -50,4 +53,14 @@ void Threadpool::setCallbackPriority(Priority priority)
 		SetThreadpoolCallbackPriority(&CallBackEnviron, TP_CALLBACK_PRIORITY_NORMAL);
 		break;
 	}
+}
+
+void Threadpool::setThreadMaximum(unsigned long cthrdMost) const
+{
+	SetThreadpoolThreadMaximum(pool, cthrdMost);
+}
+
+void Threadpool::setThreadMinimun(unsigned long cthrdMic) const
+{
+	SetThreadpoolThreadMinimum(pool,cthrdMic);
 }

@@ -11,6 +11,7 @@ void TestThreadpool()
 {
 	ThreadpoolWork tp;
 	Threadpool_Work tp_work(print);
+	tp.setThreadMaximum(2);
 	tp.create();
 	tp.setWork(tp_work);
 	tp.submit();
