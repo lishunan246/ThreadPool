@@ -27,6 +27,7 @@ void TestThreadpoolWait()
 	handle = CreateEvent(nullptr, false, false, nullptr);
 	
 	ThreadpoolWait tp;
+	tp.setCallbackPriority(Threadpool::High);
 	Threadpool_Work tp_work(print);
 	tp.setWork(tp_work);
 
