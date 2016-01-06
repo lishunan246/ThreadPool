@@ -2,11 +2,21 @@
 #include "Threadpool_Work.h"
 #include <Windows.h>
 
+using CleanupCallback = std::function<void(void*, void*)>;
+
 struct CALLER
 {
 	WORK w = nullptr;
 	void* context = nullptr;
 };
+
+struct CLEANUP
+{
+	CleanupCallback c= [](void*, void*) {return; };
+	void* context = nullptr;
+};
+
+void CALLBACK CleanupGroupCancelCallback(void *ObjectContext,void *CleanupContext);
 
 class Threadpool
 {
@@ -31,10 +41,16 @@ public:
 	void setCallbackPriority(Priority priority);
 	void setThreadMaximum(unsigned long cthrdMost) const;
 	bool setThreadMinimun(unsigned long cthrdMic) const;
+	void setCleanupContext(void * CleanupContext);
+	void setCleanupCallback(CleanupCallback cleanup_callback);
+	void cleanup(bool fCancelPendingCallbacks=false);
 protected:
 	CALLER caller;
 	TP_CALLBACK_ENVIRON CallBackEnviron;
 	PTP_CALLBACK_ENVIRON environ_ = &CallBackEnviron;
 	PTP_POOL pool;
+	PTP_CLEANUP_GROUP cleanup_group_;
+	PTP_CLEANUP_GROUP_CANCEL_CALLBACK cleanup_group_cancel_callback_=CleanupGroupCancelCallback;
+	CLEANUP cleanup_;
 };
 
