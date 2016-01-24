@@ -1,5 +1,6 @@
 #include "ThreadpoolTimer.h"
 
+using namespace TP;
 
 void __stdcall callback(PTP_CALLBACK_INSTANCE instance, void* parameter, PTP_TIMER)
 {

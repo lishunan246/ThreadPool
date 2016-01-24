@@ -6,6 +6,7 @@ void __stdcall callback(PTP_CALLBACK_INSTANCE instance, PVOID Context, PVOID Ove
 	//todo
 }
 
+using namespace TP;
 ThreadpoolIo::ThreadpoolIo(HANDLE fl)
 {
 	handle_ = fl;

@@ -1,5 +1,5 @@
 #include "ThreadpoolWork.h"
-
+using namespace TP;
 
 void __stdcall workCallback(PTP_CALLBACK_INSTANCE, void* context, PTP_WORK w)
 {

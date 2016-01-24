@@ -2,9 +2,12 @@
 #include "ThreadpoolWait.h"
 #include "ThreadpoolTimer.h"
 #include "ThreadpoolWork.h"
-void print(void * context)
+
+using namespace TP;
+
+void print(void* context)
 {
-	printf_s("Hello%s\n",static_cast<char*>(context));
+	printf_s("Hello%s\n", static_cast<char*>(context));
 }
 
 void TestThreadpool()
@@ -25,7 +28,7 @@ void TestThreadpoolWait()
 {
 	HANDLE handle;
 	handle = CreateEvent(nullptr, false, false, nullptr);
-	
+
 	ThreadpoolWait tp;
 	tp.setCallbackPriority(Threadpool::High);
 	tp.setCallback(print);

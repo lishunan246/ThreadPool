@@ -1,5 +1,6 @@
 #include "Threadpool.h"
 
+using namespace TP;
 void __stdcall CleanupGroupCancelCallback(void* ObjectContext, void* CleanupContext)
 {
 	auto &a = *static_cast<CLEANUP*>(CleanupContext);

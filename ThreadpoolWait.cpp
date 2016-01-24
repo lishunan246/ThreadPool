@@ -1,5 +1,5 @@
 #include "ThreadpoolWait.h"
-
+using namespace TP;
 
 void __stdcall wait_callback(PTP_CALLBACK_INSTANCE instance, void * parameter, PTP_WAIT wait, TP_WAIT_RESULT result)
 {
