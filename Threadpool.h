@@ -1,7 +1,12 @@
 #pragma once
 
+#ifdef WIN32
 
 #include <Windows.h>
+void CALLBACK CleanupGroupCancelCallback(void* ObjectContext, void* CleanupContext);
+
+#else
+#endif
 #include <functional>
 
 using CleanupCallback = std::function<void(void*, void*)>;
@@ -22,14 +27,13 @@ struct CLEANUP
 	void* context = nullptr;
 };
 
-void CALLBACK CleanupGroupCancelCallback(void* ObjectContext, void* CleanupContext);
 
 namespace TP
 {
 	class Threadpool
 	{
 	public:
-		enum Priority
+		enum class Priority
 		{
 			High,
 			Low,
@@ -54,12 +58,16 @@ namespace TP
 		void cleanup(bool fCancelPendingCallbacks = false);
 	protected:
 		CALLER caller;
+
+#ifdef WIN32
 		TP_CALLBACK_ENVIRON CallBackEnviron;
 		PTP_CALLBACK_ENVIRON environ_ = &CallBackEnviron;
 		PTP_POOL pool;
 		PTP_CLEANUP_GROUP cleanup_group_;
 		PTP_CLEANUP_GROUP_CANCEL_CALLBACK cleanup_group_cancel_callback_ = CleanupGroupCancelCallback;
 		CLEANUP cleanup_;
+#else
+#endif
 	};
 }
 

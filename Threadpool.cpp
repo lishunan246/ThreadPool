@@ -55,13 +55,13 @@ void Threadpool::setCallbackPriority(Priority priority)
 {
 	switch (priority)
 	{
-	case High:
+	case Priority::High:
 		SetThreadpoolCallbackPriority(&CallBackEnviron, TP_CALLBACK_PRIORITY_HIGH);
 		break;
-	case Low:
+	case Priority::Low:
 		SetThreadpoolCallbackPriority(&CallBackEnviron, TP_CALLBACK_PRIORITY_LOW);
 		break;
-	case Normal:
+	case Priority::Normal:
 		SetThreadpoolCallbackPriority(&CallBackEnviron, TP_CALLBACK_PRIORITY_NORMAL);
 		break;
 	}

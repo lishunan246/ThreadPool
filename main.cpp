@@ -30,7 +30,7 @@ void TestThreadpoolWait()
 	handle = CreateEvent(nullptr, false, false, nullptr);
 
 	ThreadpoolWait tp;
-	tp.setCallbackPriority(Threadpool::High);
+	tp.setCallbackPriority(Threadpool::Priority::High);
 	tp.setCallback(print);
 
 	char c[] = " world2";
