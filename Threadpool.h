@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include <Windows.h>
 #include <functional>
 
@@ -61,7 +62,5 @@ namespace TP
 		CLEANUP cleanup_;
 	};
 }
-
-
 
 
