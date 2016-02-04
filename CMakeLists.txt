@@ -19,3 +19,9 @@ add_executable(
 )
 
 target_link_libraries(TPTest threadpool)
+
+add_executable(
+	TPWorkTest TPWorkTest.cpp
+)
+
+target_link_libraries(TPWorkTest threadpool)
