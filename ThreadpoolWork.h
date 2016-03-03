@@ -14,8 +14,9 @@ namespace TP
 		bool create() override;
 		void waitForCallbacks(bool fCancelPendingCallbacks = false) const override;
 		void submit() const;
-		static bool trySubmit(PTP_SIMPLE_CALLBACK pfns, void* pv);
+		static bool trySubmit(CALLER* pfns, void* pv);
 		void close() const override;
+		
 	private:
 		PTP_WORK_CALLBACK callback_ = workCallback;
 		PTP_WORK work_ = nullptr;

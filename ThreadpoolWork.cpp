@@ -6,6 +6,12 @@ void __stdcall workCallback(PTP_CALLBACK_INSTANCE, void* context, PTP_WORK w)
 	Threadpool::call(context);
 }
 
+void CALLBACK SimpleCallback(PTP_CALLBACK_INSTANCE,PVOID Context)
+{
+	auto& a = *static_cast<CALLER*>(Context);
+	a.w(a.context);
+}
+
 ThreadpoolWork::ThreadpoolWork()
 {
 }
@@ -31,9 +37,10 @@ void ThreadpoolWork::submit() const
 	SubmitThreadpoolWork(work_);
 }
 
-bool ThreadpoolWork::trySubmit(PTP_SIMPLE_CALLBACK pfns, void* pv)
+bool ThreadpoolWork::trySubmit(CALLER* work, void* pv)
 {
-	return TRUE== TrySubmitThreadpoolCallback(pfns, pv,nullptr);
+	
+	return TRUE== TrySubmitThreadpoolCallback(SimpleCallback, work,nullptr);
 }
 
 void ThreadpoolWork::close() const

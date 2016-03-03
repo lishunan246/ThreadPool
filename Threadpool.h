@@ -12,24 +12,24 @@ void CALLBACK CleanupGroupCancelCallback(void* ObjectContext, void* CleanupConte
 using CleanupCallback = std::function<void(void*, void*)>;
 using WORK = std::function<void(void*)>;
 
-struct CALLER
-{
-	WORK w = nullptr;
-	void* context = nullptr;
-};
-
-struct CLEANUP
-{
-	CleanupCallback c = [](void*, void*)
-	{
-		return;
-	};
-	void* context = nullptr;
-};
-
 
 namespace TP
 {
+	struct CALLER
+	{
+		WORK w = nullptr;
+		void* context = nullptr;
+	};
+
+	struct CLEANUP
+	{
+		CleanupCallback c = [](void*, void*)
+		{
+			return;
+		};
+		void* context = nullptr;
+	};
+
 	class Threadpool
 	{
 	public:

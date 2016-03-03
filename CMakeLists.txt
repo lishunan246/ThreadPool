@@ -12,6 +12,8 @@ add_library(threadpool STATIC
     ThreadpoolWork.h
     ThreadpoolWait.h
     ThreadpoolIo.h
+    ThreadpoolWaitObject.h
+    ThreadpoolWaitObject.cpp
 )
 
 add_executable(
@@ -25,3 +27,9 @@ add_executable(
 )
 
 target_link_libraries(TPWorkTest threadpool)
+
+add_executable(
+	TPWaitTest TPWaitTest.cpp
+)
+
+target_link_libraries(TPWaitTest threadpool)
