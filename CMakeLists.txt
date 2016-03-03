@@ -1,5 +1,11 @@
 cmake_minimum_required(VERSION 2.6)
 project(Threadpool)
+if(WIN32)
+    message(STATUS ">>> Windows")
+else()
+    message(STATUS ">>> Not Windows")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+endif()
 
 add_library(threadpool STATIC 
     Threadpool.cpp
@@ -33,3 +39,9 @@ add_executable(
 )
 
 target_link_libraries(TPWaitTest threadpool)
+
+add_executable(
+	TPTimerTest TPTimerTest.cpp
+)
+
+target_link_libraries(TPTimerTest threadpool)

@@ -32,9 +32,14 @@ void ThreadpoolTimer::waitForCallbacks(bool fCancelPendingCallbacks) const
 	WaitForThreadpoolTimerCallbacks(timer_, fCancelPendingCallbacks);
 }
 
-void ThreadpoolTimer::set(PFILETIME pftDueTime, unsigned long msPeriod, unsigned long msWindowLength) const
+void ThreadpoolTimer::set(unsigned long long hundredNS, unsigned long msPeriod, unsigned long msWindowLength) const
 {
-	SetThreadpoolTimer(timer_, pftDueTime, msPeriod, msWindowLength);
+	FILETIME FileTime;
+	ULARGE_INTEGER integer;
+	integer.QuadPart = 0-hundredNS;
+	FileTime.dwHighDateTime = integer.HighPart;
+	FileTime.dwLowDateTime = integer.LowPart;
+	SetThreadpoolTimer(timer_, &FileTime, msPeriod, msWindowLength);
 }
 
 void ThreadpoolTimer::close() const

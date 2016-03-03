@@ -10,42 +10,6 @@ void print(void* context)
 	printf_s("Hello%s\n", static_cast<char*>(context));
 }
 
-void TestThreadpool()
-{
-	ThreadpoolWork tp;
-	tp.setThreadMaximum(2);
-	tp.create();
-	tp.setCallback(print);
-	tp.submit();
-
-	char c[] = " world";
-	tp.setContext(&c);
-	tp.waitForCallbacks();
-	tp.close();
-}
-
-void TestThreadpoolWait()
-{
-	HANDLE handle;
-	handle = CreateEvent(nullptr, false, false, nullptr);
-
-	ThreadpoolWait tp;
-	tp.setCallbackPriority(Threadpool::Priority::High);
-	tp.setCallback(print);
-
-	char c[] = " world2";
-	tp.setContext(&c);
-	tp.create();
-	tp.set(handle);
-	SetEvent(handle);
-
-
-	Sleep(100);
-	ResetEvent(handle);
-
-	tp.waitForCallbacks();
-	tp.close();
-}
 
 void TestThreadpoolTimer()
 {
@@ -68,9 +32,6 @@ void TestThreadpoolTimer()
 
 int main()
 {
-	TestThreadpool();
-	TestThreadpoolWait();
-
 	TestThreadpoolTimer();
 
 	return 0;

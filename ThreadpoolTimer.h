@@ -14,7 +14,7 @@ namespace TP
 		bool create() override;
 		bool isSet() const;
 		void waitForCallbacks(bool fCancelPendingCallbacks = false) const override;
-		void set(PFILETIME pftDueTime, unsigned long msPeriod, unsigned long msWindowLength) const;
+		void set(unsigned long long hundredNS, unsigned long msPeriod, unsigned long msWindowLength) const;
 		void close() const override;
 	private:
 		PTP_TIMER_CALLBACK timer_callback_ = callback;
