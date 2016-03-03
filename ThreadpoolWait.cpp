@@ -27,7 +27,7 @@ bool ThreadpoolWait::create()
 	return tp_wait_ != nullptr;
 }
 
-void ThreadpoolWait::set(ThreadpoolWaitObject WaitObject, int timeout) const
+void ThreadpoolWait::set(const ThreadpoolWaitObject& WaitObject, int timeout) const
 {
 	SetThreadpoolWait(tp_wait_, HANDLE(WaitObject.get()), nullptr);
 }

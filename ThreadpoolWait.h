@@ -17,7 +17,7 @@ namespace TP
 		~ThreadpoolWait();
 		void close() const override;
 		bool create() override;
-		void set(ThreadpoolWaitObject WaitObject, int timeout = 0) const;
+		void set(const ThreadpoolWaitObject& WaitObject, int timeout = 0) const;
 		void waitForCallbacks(bool fCancelPendingCallbacks = false) const override;
 	private:
 #ifdef WIN32
