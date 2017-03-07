@@ -3,7 +3,7 @@
 
 void __stdcall callback(PTP_CALLBACK_INSTANCE instance, PVOID Context, PVOID Overlapped, ULONG IoResult, ULONG_PTR NumberOfBytesTransferred, PTP_IO Io)
 {
-	//todo
+	TP::Threadpool::call(Context);
 }
 
 using namespace TP;
